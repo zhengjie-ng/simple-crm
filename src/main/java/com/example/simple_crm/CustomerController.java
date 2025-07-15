@@ -16,39 +16,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
-    private ArrayList<Customer> customers = new ArrayList<>();
 
-    public CustomerController() {
-        customers.add(Customer.builder().firstName("Bruce").lastName("Banner").build());
-        customers.add(Customer.builder().firstName("Peter").lastName("Parker").build());
-        customers.add(Customer.builder().firstName("Stephen").lastName("Strange").build());
-        customers.add(Customer.builder().firstName("Steve").lastName("Roger").build());
+    // private CustomerService customerService = new CustomerService();
+    private CustomerService customerService;
+
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
+
     }
 
     // CREATE
     @PostMapping
     public ResponseEntity<Customer> createCustomer(@RequestBody Customer customer) {
-        // Get the customer and add it to the ArrayList
-        customers.add(customer);
-        return new ResponseEntity<>(customer, HttpStatus.CREATED);
+
+        Customer newCustomer = customerService.createCustomer(customer);
+        return new ResponseEntity<>(newCustomer, HttpStatus.CREATED);
     }
 
     // READ
     // Read all
     @GetMapping
-    // public ArrayList<Customer> getAllCustomers() {
     public ResponseEntity<ArrayList<Customer>> getAllCustomers() {
-        return new ResponseEntity<>(customers, HttpStatus.OK);
-        // return customers;
+        ArrayList<Customer> allCustomers = customerService.getAllCustomers();
+        return new ResponseEntity<>(allCustomers, HttpStatus.OK);
     }
 
     // Read one
     @GetMapping("/{id}")
     public ResponseEntity<Customer> getCustomer(@PathVariable String id) {
         try {
-            int index = getCustomerIndex(id);
-            return new ResponseEntity<>(customers.get(index), HttpStatus.OK);
-            // return customers.get(index);
+            Customer foundCustomer = customerService.getCustomer(id);
+            return new ResponseEntity<>(foundCustomer, HttpStatus.OK);
         } catch (CustomerNotFoundException ex) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -59,10 +57,8 @@ public class CustomerController {
     @PutMapping("/{id}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable String id, @RequestBody Customer customer) {
         try {
-            int index = getCustomerIndex(id);
-            customers.set(index, customer);
-            return new ResponseEntity<>(customer, HttpStatus.OK);
-            // return customer;
+            Customer updatedCustomer = customerService.updateCustomer(id, customer);
+            return new ResponseEntity<>(updatedCustomer, HttpStatus.OK);
         } catch (CustomerNotFoundException ex) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -72,26 +68,11 @@ public class CustomerController {
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteCustomer(@PathVariable String id) {
         try {
-            int index = getCustomerIndex(id);
-            customers.remove(index);
+            customerService.deleteCustomer(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            // return customers.remove(index);
         } catch (CustomerNotFoundException ex) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-    }
-
-    // Helper method
-    private int getCustomerIndex(String id) {
-        for (Customer customer : customers) {
-            if (customer.getId().equals(id)) {
-                return customers.indexOf(customer);
-            }
-        }
-
-        // Customer id not found
-        // return -1;
-        throw new CustomerNotFoundException(id);
     }
 
 }

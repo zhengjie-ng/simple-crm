@@ -40,19 +40,19 @@ public class InteractionController {
     // Read one
     @GetMapping("/{id}")
     public ResponseEntity<Interaction> getInteraction(@PathVariable Long id) {
-
-        try {
-            Interaction foundInteraction = interactionService.getInteraction(id);
-            return new ResponseEntity<>(foundInteraction, HttpStatus.OK);
-        } catch (InteractionNotFoundException e) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        return new ResponseEntity<>(interactionService.getInteraction(id), HttpStatus.OK);
+        // try {
+        //     Interaction foundInteraction = interactionService.getInteraction(id);
+        //     return new ResponseEntity<>(foundInteraction, HttpStatus.OK);
+        // } catch (InteractionNotFoundException e) {
+        //     return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        // }
     }
 
     // UPDATE
     @PutMapping("/{id}")
     public ResponseEntity<Interaction> updateInteraction(@PathVariable Long id, @RequestBody Interaction interaction) {
-
+        // return new ResponseEntity<>(interactionService.updateInteraction(id, interaction), HttpStatus.OK);
         try {
             Interaction updatedInteraction = interactionService.updateInteraction(id, interaction);
             return new ResponseEntity<>(updatedInteraction, HttpStatus.OK);
@@ -64,6 +64,7 @@ public class InteractionController {
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteInteraction(@PathVariable Long id) {
+        
         try {
             interactionService.deleteInteraction(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

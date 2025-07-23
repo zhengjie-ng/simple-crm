@@ -15,5 +15,11 @@ public interface CustomerService {
 
   Interaction addInteractionToCustomer(Long id, Interaction interaction);
 
+  List<Customer> findByFirstName(String firstName);
+
+  List<Customer> findByFirstNameContainingIgnoreCase(String firstName);
+
+  List<Customer> findByInteractionsIsEmpty();
+
 }
 

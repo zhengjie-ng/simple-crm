@@ -1,4 +1,4 @@
-package com.example.simple_crm;
+package com.example.simple_crm.controller;
 
 import java.util.List;
 
@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.simple_crm.entity.Customer;
+import com.example.simple_crm.entity.Interaction;
+import com.example.simple_crm.service.CustomerService;
 
 import jakarta.validation.Valid;
 
@@ -97,7 +101,7 @@ public class CustomerController {
   // NESTED ROUTE - add interaction to customer
   @PostMapping("/{id}/interactions")
   public ResponseEntity<Interaction> addInteractionToCustomer(@PathVariable Long id,
-      @RequestBody Interaction interaction) {
+      @Valid @RequestBody Interaction interaction) {
     Interaction newInteraction = customerService.addInteractionToCustomer(id, interaction);
     return new ResponseEntity<>(newInteraction, HttpStatus.CREATED);
   }

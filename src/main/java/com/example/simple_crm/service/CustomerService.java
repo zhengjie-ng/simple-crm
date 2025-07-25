@@ -1,6 +1,9 @@
-package com.example.simple_crm;
+package com.example.simple_crm.service;
 
 import java.util.List;
+
+import com.example.simple_crm.entity.Customer;
+import com.example.simple_crm.entity.Interaction;
 
 public interface CustomerService {
   Customer createCustomer(Customer customer);

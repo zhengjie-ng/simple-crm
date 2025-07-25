@@ -1,4 +1,4 @@
-package com.example.simple_crm;
+package com.example.simple_crm.exception;
 
 public class InteractionNotFoundException extends RuntimeException{
         public InteractionNotFoundException(Long id) {

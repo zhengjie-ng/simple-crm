@@ -1,4 +1,4 @@
-package com.example.simple_crm;
+package com.example.simple_crm.entity;
 
 import java.util.UUID;
 

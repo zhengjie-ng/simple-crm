@@ -1,4 +1,4 @@
-package com.example.simple_crm;
+package com.example.simple_crm.dto;
 
 import java.time.LocalDateTime;
 

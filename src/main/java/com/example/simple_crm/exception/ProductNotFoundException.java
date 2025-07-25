@@ -1,4 +1,4 @@
-package com.example.simple_crm;
+package com.example.simple_crm.exception;
 
 public class ProductNotFoundException extends RuntimeException {
     public ProductNotFoundException(String id) {

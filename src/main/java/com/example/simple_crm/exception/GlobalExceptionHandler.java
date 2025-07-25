@@ -1,4 +1,4 @@
-package com.example.simple_crm;
+package com.example.simple_crm.exception;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,6 +9,8 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import com.example.simple_crm.dto.ErrorResponse;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {

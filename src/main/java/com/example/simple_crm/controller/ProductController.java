@@ -1,4 +1,4 @@
-package com.example.simple_crm;
+package com.example.simple_crm.controller;
 
 import java.util.ArrayList;
 
@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.simple_crm.entity.Product;
+import com.example.simple_crm.exception.ProductNotFoundException;
 
 @RestController
 @RequestMapping("/products")

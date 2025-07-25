@@ -1,10 +1,14 @@
-package com.example.simple_crm;
+package com.example.simple_crm.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+
+import com.example.simple_crm.entity.Interaction;
+import com.example.simple_crm.exception.InteractionNotFoundException;
+import com.example.simple_crm.repository.InteractionRepository;
 
 @Primary
 @Service

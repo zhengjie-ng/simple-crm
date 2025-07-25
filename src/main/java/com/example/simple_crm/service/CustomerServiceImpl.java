@@ -1,10 +1,16 @@
-package com.example.simple_crm;
+package com.example.simple_crm.service;
 
 import java.util.List;
-import java.util.Optional;
+// import java.util.Optional;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+
+import com.example.simple_crm.entity.Customer;
+import com.example.simple_crm.entity.Interaction;
+import com.example.simple_crm.exception.CustomerNotFoundException;
+import com.example.simple_crm.repository.CustomerRepository;
+import com.example.simple_crm.repository.InteractionRepository;
 
 // customerServiceImpl bean is a type of CustomerService
 @Primary
